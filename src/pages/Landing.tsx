@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { HiVolumeUp, HiVolumeOff } from "react-icons/hi";
 
 export const Landing: React.FC = () => {
-  const [audio] = useState(new Audio("./src/assets/space.mp3"));
+  const [audio] = useState(new Audio("./public/space.mp3"));
   const [audioPlaying, setAudioPlaying] = useState(false);
 
   const handleToggleMusic = () => {
