@@ -1,12 +1,5 @@
-- mouse over makes stars change color if they don't have color
-- shooting stars
-- gas clouds
-- add audio (https://www.youtube.com/watch?v=ztVV54sPOns&ab_channel=RelaxationAmbientMusic)
-- links move to the side (give stars a trail to give effect of moving)
+# Paul Bokelman - Portfolio
 
-- projects cluster
+This is my portfolio. It's a work in progress. I'm using it to showcase my projects and to learn how to write about them. Join me on my journey.
 
-  - transition fades bg to black then back in
-  - projects fade in
-
-- separate particle background from landing page components (clusters & text)
+[http://pab.dev/](http://pab.dev/)
