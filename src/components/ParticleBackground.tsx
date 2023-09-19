@@ -42,11 +42,11 @@ export const ParticleBackground: React.FC<Props> = ({ children }) => {
     shootingStarTrailMultiplier: 6,
   };
 
-  const nudgeCoordinates = (coordinates: Coordinates, range: number): Coordinates => {
-    return coordinates.map((val): number => {
-      return val + random(-range, range);
-    }) as Coordinates;
-  };
+  // const nudgeCoordinates = (coordinates: Coordinates, range: number): Coordinates => {
+  //   return coordinates.map((val): number => {
+  //     return val + random(-range, range);
+  //   }) as Coordinates;
+  // };
 
   const directionallyNudgeCoordinates = (
     coordinates: Coordinates,
