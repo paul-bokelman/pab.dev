@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ParticleBackground } from "../components";
+import { ParticleBackground, CartoonArrowIcon, BlackHoleIcon } from "../components";
 import { motion } from "framer-motion";
 import { HiVolumeUp, HiVolumeOff } from "react-icons/hi";
 
@@ -16,114 +16,19 @@ export const Landing: React.FC = () => {
     setAudioPlaying(true);
   };
 
-  // class Cluster {
-  //   // discriminator? to determine x, y, color, size etc?
-  //   x: number;
-  //   y: number;
-  //   color: string;
-  //   size: number;
-  //   pulseSize: number;
-  //   pulseAlpha: number;
-
-  //   constructor([x, y]: Coordinates, color: string | undefined) {
-  //     //   this.x = x;
-  //     //   this.y = y;
-  //     this.x = 200;
-  //     this.y = 600;
-  //     this.size = 4;
-  //     this.pulseSize = 0;
-  //     this.pulseAlpha = 0.15;
-
-  //     this.color = color ?? (config.particleColor as string);
-  //   }
-  //   draw() {
-  //     if (ctx) {
-  //       setProjectClusterCoordinates([this.x, this.y]);
-
-  //       ctx.shadowBlur = 0;
-  //       ctx.shadowColor = "transparent";
-
-  //       // original
-  //       ctx.beginPath();
-  //       ctx.fillStyle = this.color;
-  //       ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-  //       ctx.closePath();
-  //       ctx.fill();
-
-  //       ctx.beginPath();
-  //       ctx.fillStyle = adjustAlpha(hexToRGBA(this.color), this.pulseAlpha);
-  //       ctx.arc(this.x, this.y, this.pulseSize, 0, Math.PI * 2);
-  //       ctx.closePath();
-  //       ctx.fill();
-  //     }
-  //   }
-  //   update() {
-  //     if (ctx) {
-  //       document.onmousemove = (e) => {
-  //         const [cx, cy] = [e.pageX, e.pageY];
-
-  //         if (proximity([cx, cy], [this.x, this.y], 100)) {
-  //           console.log("in range");
-  //         }
-  //       };
-
-  //       if (this.pulseSize >= 10) {
-  //         this.pulseSize += 0.1;
-  //         this.pulseAlpha -= 0.007;
-
-  //         if (this.pulseAlpha <= 0) {
-  //           this.pulseSize = 0;
-  //           this.pulseAlpha = 0.15;
-  //         }
-  //       } else {
-  //         this.pulseSize += 0.1;
-  //       }
-  //     }
-  //   }
-  // }
-
-  //   <div
-  //   ref={projectClusterActionable}
-  //   style={{
-  //     transformOrigin: "center",
-  //     top: `${projectClusterCoordinates[1] - 15}px`,
-  //     left: `${projectClusterCoordinates[0] - 20}px`,
-  //   }}
-  //   className="absolute flex items-center justify-center h-8 w-40 px-4 cursor-pointer z-10 group "
-  //   onClick={handleProjectClusterActionableClick}
-  // >
-  //   <p className="relative left-4 text-white text-opacity-60 text-xs font-mono group-hover:text-[#CA8DFD] transition-color">
-  //     Projects Cluster
-  //   </p>
-  // </div>
-  // <div
-  //   style={{ top: `${200}px`, left: `${400}px` }}
-  //   className="absolute"
-  //   onClick={handleProjectClusterActionableClick}
-  // >
-  //   <p className="relative -top-2 left-4 text-white text-opacity-60 text-xs font-mono">The Void</p>
-  // </div>
-  // <div
-  //   style={{ top: `${650}px`, left: `${1000}px` }}
-  //   className="absolute"
-  //   onClick={handleProjectClusterActionableClick}
-  // >
-  //   <p className="relative -top-2 left-4 text-white text-opacity-60 text-xs font-mono">The Blog System</p>
-  // </div>
-
   return (
     <ParticleBackground>
-      <div className="flex items-center fixed top-0 w-full gap-2 p-4">
-        <div onClick={handleToggleMusic} className="text-white text-opacity-40 text-2xl cursor-pointer">
+      <div className="flex items-center fixed top-0 w-full gap-2 p-4 z-50">
+        <div onClick={handleToggleMusic} className="text-[#AFAFFF40] text-2xl cursor-pointer z-50">
           {audioPlaying ? <HiVolumeUp /> : <HiVolumeOff />}
         </div>
       </div>
-      <div className="flex flex-col gap-2 w-1/3 justify-center items-center">
+      <div className="flex flex-col gap-1 justify-center items-start z-50">
         <motion.h1
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 2, delay: 1.5 }}
-          className="text-white text-opacity-60 font-bold text-xl"
+          className="font-itim text-[25px] text-transparent bg-clip-text bg-gradient-to-r from-[#AFAFFF40] via-[#AFAFFF] via-50% to-[#AFAFFF40]"
         >
           Paul A. Bokelman
         </motion.h1>
@@ -131,10 +36,97 @@ export const Landing: React.FC = () => {
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 2.3 }}
-          className="text-white text-opacity-20 text-sm font-medium text-center"
+          className="text-transparent bg-clip-text bg-gradient-to-r from-[#AFAFFF40] via-[#AFAFFF] via-90% to-[#AFAFFF40] text-sm font-medium"
         >
-          Software engineer based in San Diego, CA. Committed to building the next generation of technology.
+          Abusing software, creatively.
         </motion.p>
+        {/* <div className="flex items-center gap-2 mt-2">
+          <motion.span
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 4, delay: 2.5 }}
+            className="cursor-pointer text-[#AFAFFF]/40 hover:text-[#AFAFFF] hover:underline transition-all text-sm"
+          >
+            projects
+          </motion.span>
+          <motion.span
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 4, delay: 3 }}
+            className="cursor-pointer text-[#AFAFFF]/40 hover:text-[#AFAFFF] hover:underline transition-all text-sm"
+          >
+            blog
+          </motion.span>
+          <motion.span
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 4, delay: 3.5 }}
+            className="cursor-pointer text-[#AFAFFF]/40 hover:text-[#AFAFFF] hover:underline transition-all text-sm"
+          >
+            github
+          </motion.span>
+        </div> */}
+      </div>
+      <div className="absolute w-screen h-screen">
+        <div className="relative top-[32rem] left-[12rem]">
+          <motion.div
+            initial={{ opacity: 0, x: 8 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 2, delay: 2.5 }}
+            className="relative -top-2"
+          >
+            <div className="absolute h-1.5 w-1.5 rounded-full bg-[#90C567]" />
+            <div className="absolute -left-[2px] -top-[2px] h-2.5 w-2.5 rounded-full bg-[#90C567]/20" />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 2, delay: 3 }}
+            className="relative"
+          >
+            <CartoonArrowIcon color="#90C567" className="relative left-3 w-6 h-6" />
+            <span className="relative font-itim text-[#90C567] left-12 -top-5">projects</span>
+          </motion.div>
+        </div>
+
+        <div className="relative top-[8rem] left-[68rem]">
+          <motion.div
+            initial={{ opacity: 0, x: 10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 2, delay: 3 }}
+          >
+            <motion.div
+              animate={{ rotate: 20 }}
+              transition={{
+                duration: 3,
+                repeat: Infinity,
+                repeatType: "reverse",
+                ease: "easeInOut",
+              }}
+              className="relative w-12 h-12 top-8 -left-2"
+            >
+              <BlackHoleIcon className="h-full w-full opacity-80" />
+            </motion.div>
+          </motion.div>
+          {/* <motion.div
+            initial={{ opacity: 0, x: -8 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 2, delay: 2.5 }}
+            className="relative"
+          >
+            <div className="absolute h-1.5 w-1.5 rounded-full bg-[#389CD4]" />
+            <div className="absolute -left-[2px] -top-[2px] h-2.5 w-2.5 rounded-full bg-[#389CD4]/20" />
+          </motion.div> */}
+          <motion.div
+            initial={{ opacity: 0, x: -10 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 2, delay: 3 }}
+            className="relative"
+          >
+            <CartoonArrowIcon color="#B289FF" className="transform rotate-180 relative -left-8 -top-7 w-6 h-6" />
+            <span className="relative font-itim text-[#B289FF] -left-[4.5rem] -top-[3.8rem]">blog</span>
+          </motion.div>
+        </div>
       </div>
     </ParticleBackground>
   );

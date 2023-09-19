@@ -31,10 +31,10 @@ export const ParticleBackground: React.FC<Props> = ({ children }) => {
   };
 
   const config: ParticleConfig = {
-    starCount: 2000,
+    starCount: 1000,
     starSizeRange: 1.4,
     starColor: { variationProbability: 0.1 },
-    starFadeRate: 0.1,
+    starFadeRate: 0.08,
     shootingStarSizeRange: 1.8,
     shootingStarColor: undefined,
     shootingStarCount: 5,
@@ -45,6 +45,16 @@ export const ParticleBackground: React.FC<Props> = ({ children }) => {
   const nudgeCoordinates = (coordinates: Coordinates, range: number): Coordinates => {
     return coordinates.map((val): number => {
       return val + random(-range, range);
+    }) as Coordinates;
+  };
+
+  const directionallyNudgeCoordinates = (
+    coordinates: Coordinates,
+    range: number,
+    [velocityX, velocityY]: [number, number]
+  ): Coordinates => {
+    return coordinates.map((val, i): number => {
+      return val + random(0, range) * (i === 0 ? velocityX : velocityY);
     }) as Coordinates;
   };
 
@@ -140,6 +150,7 @@ export const ParticleBackground: React.FC<Props> = ({ children }) => {
     size: number;
     alpha: number;
     alphaIncreasing: boolean;
+    velocity: [number, number];
 
     constructor([x, y]: Coordinates, color: string | undefined) {
       this.x = x;
@@ -148,6 +159,8 @@ export const ParticleBackground: React.FC<Props> = ({ children }) => {
       this.color = computeColor(color, "star");
       this.alpha = easeInOutSine(random(0, 1));
       this.alphaIncreasing = false;
+      // this.velocity = [random(-1, 1), random(-1, 1)];
+      this.velocity = [1, 1];
     }
     draw() {
       if (ctx) {
@@ -162,7 +175,7 @@ export const ParticleBackground: React.FC<Props> = ({ children }) => {
           this.x = random(0, dimensions.w);
           this.y = random(0, dimensions.h);
         }
-        const [x, y] = nudgeCoordinates([this.x, this.y], 0.09);
+        const [x, y] = directionallyNudgeCoordinates([this.x, this.y], 0.09, [this.velocity[0], this.velocity[1]]);
         this.x = x;
         this.y = y;
 
@@ -253,14 +266,15 @@ export const ParticleBackground: React.FC<Props> = ({ children }) => {
   }, [ctx]);
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 2 }}
-      className="h-screen w-screen flex justify-center items-center"
-    >
-      <canvas ref={canvas} className="absolute top-0 left-0 w-screen h-screen" />
+    <div className="h-screen w-screen flex justify-center items-center bg-gradient-to-tr from-[#05050b] via-[#1a1a38] to-[#090909]">
+      <motion.canvas
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 3 }}
+        ref={canvas}
+        className="absolute top-0 left-0 w-screen h-screen"
+      />
       {children}
-    </motion.div>
+    </div>
   );
 };
