@@ -1,0 +1,29 @@
+[
+  {
+    "name": "Club Compass",
+    "slug": "club-compass",
+    "description": "Club Compass is a webapp meant to improve the discovery and management of clubs and organizations at high-schools and universities. The club discovery process is fragmented and difficult to navigate. Club Compass aims to solve this problem by providing a centralized platform for students to discover, join, and manage clubs at their school. Club Compass is built with a modern tech stack and is designed to be scalable and maintainable.",
+    "image": "https://github.com/paul-bokelman/cc/assets/72945168/eb7dd288-fef4-4bbc-8077-ad567a968dd8",
+    "github": "https://github.com/paul-bokelman/cc",
+    "website": "",
+    "tags": ["react", "typescript"]
+  },
+  {
+    "name": "Physical Reward System",
+    "slug": "physical-reward-system",
+    "description": "A todo application paired with a physical reward system based on the principle of classical conditioning.",
+    "image": "",
+    "github": "https://github.com/paul-bokelman/prs",
+    "website": "",
+    "tags": ["react", "typescript"]
+  },
+  {
+    "name": "8bitfish",
+    "slug": "8bitfish",
+    "description": "Crypto NFT project. 8BitFish are 8000 completely randomized algorithmically generated pixel fish with exactly 2251799813685248 combinations",
+    "image": "https://user-images.githubusercontent.com/72945168/140443831-7ba62298-4631-46af-bf60-9cb96a0c6359.png",
+    "github": "https://github.com/8bitfish",
+    "website": "https://8bitfishnft.com/",
+    "tags": ["react", "typescript"]
+  }
+]
