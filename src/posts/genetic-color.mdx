@@ -1,0 +1,35 @@
+---
+title: "Genetic Color — My Intro to Machine Learning"
+excerpt: "A short story of my journey into the world of genetic algorithms."
+date: "2024-05-05"
+complete: true
+tags: ["python"]
+---
+
+Check out genetic color on [github](https://github.com/paul-bokelman/genetic-color).
+
+I feel like writing so here's a short story of my journey into the world of machine learning and genetic algorithms.
+
+I've always been fascinated by the theory of evolution and how organisms evolve, adapt, and survive in their environments. This idea that such complex systems can emerge out of simple set of rules has always simultanously baffled and amazed me. Recently, this interest in evolution has also given me immense motivation in gathering an understanding of how machines "learn". With the rise of AI and the pletora of content avaliable on the topic, I decided to get my hands dirty and finally understand this magical technology.
+
+Initially I tried building a simple [neural network](https://github.com/paul-bokelman/nn) (hopefully finished by now) in python and it turned out to be much more difficult than I thought and I wasn't able to complete it... Going into the project I thought I had developed a good understanding of the "big picture" but struggled with much of the smaller technical parts. Eventually the demise of this project came when I wasn't able to figure out how to properly implement back propagation. I reluctantly decided after a few weeks of struggle that I should put the project aside and work on something similar but different. Within a few weeks I had discovered the "magic" of genetic algorithms. I watched several videos of simple algorithms producing amazing adaptive systems and I was hooked.
+
+After very brief research into genetic algorithms, I found a search problem (find a color) and jumped right into it. My previous understanding of evolution made the process very intuitive and enjoyable and within just a couple of days I had completed my first (very simple) genetic algorithm.
+
+<div class="video">
+  <video loop="true" width="500px" autoplay="autoplay" muted>
+    <source
+      src="https://github.com/paul-bokelman/pab.dev/assets/72945168/f71cc070-0866-4f79-a304-c9db0c513f8f"
+      type="video/mp4"
+    />
+  </video>
+  <sub>the algorithm attempting to find an ever-changing target color</sub>
+</div>
+
+The results of just a few hundred lines of code amazed me. I found it captivating how slight changes in the configuration (mutation chance, population size, tournament proportion, etc.) could have profound and diverse effects on the way that the population behaved and preformed. Tweaking parameters and modifying the algorithm in various ways really helped me gain a deeper understanding of how a population can grow and decay more quickly or slowly under certain conditions and how sensitive the population is to seemingly insignificant changes in its configuration or environment.
+
+After completing genetic color I rode the wave of confidence and found myself faced with my next project: implementing [NEAT](https://nn.cs.utexas.edu/downloads/papers/stanley.ec02.pdf) in python. As of writing this post I am still working on [my implementation of NEAT](https://github.com/paul-bokelman/neat) and it's going relatively well. I'm nearly finished with the algorithm but need to work out a few bugs (speciation is a bitch) and add a few more features to really call it complete.
+
+So that's where I'm at, when my implementation is complete you best believe I'll be showcasing all the interesting things I found and learned in another post. Additionally, it may be far in the future, but I do plan on revisting and completing my basic neural network and comparing the two algorithms.
+
+The journey continues.

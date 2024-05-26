@@ -6,7 +6,7 @@ type ProjectPreviewProps = Omit<(typeof projects)[number], "tags"> & { tags: Tag
 
 export const ProjectPreview: React.FC<ProjectPreviewProps> = (project) => {
   return (
-    <div className="flex flex-row items-center gap-2 hover:translate-x-5 group hover:scale-105 transition-transform hover:cursor-pointer">
+    <div className="flex flex-row items-center hover:translate-x-3 group hover:scale-105 transition-transform">
       <a
         href={project.github}
         rel="noopener noreferrer"
@@ -15,9 +15,11 @@ export const ProjectPreview: React.FC<ProjectPreviewProps> = (project) => {
       >
         {project.name}
       </a>
-      {project.tags.map((name) => (
-        <Tag key={name} name={name} />
-      ))}
+      <div className="flex flex-row items-center gap-2">
+        {project.tags.map((name) => (
+          <Tag key={name} name={name} />
+        ))}
+      </div>
     </div>
   );
 };

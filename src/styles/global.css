@@ -6,3 +6,24 @@
   font-family: "Charter";
   src: url("/public/fonts/Charter.otf");
 }
+
+.video {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.video video {
+  border-radius: 0.4rem;
+}
+
+.video sub {
+  font-size: 0.8rem;
+  color: #808080;
+  margin-top: 0.5rem;
+}

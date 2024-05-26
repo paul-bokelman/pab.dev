@@ -1,4 +1,5 @@
 import React, { PropsWithChildren } from "react";
+import { Link } from "./link";
 
 export const P: React.FC<PropsWithChildren> = ({ children }) => {
   return <p className="text-base leading-6 mb-4 dark:text-dark-sub">{children}</p>;
@@ -25,4 +26,5 @@ export const components = {
   p: (props: any) => <P {...props} />,
   pre: (props: any) => <CodeBlock {...props} />,
   code: (props: any) => <Code {...props} />,
+  a: (props: any) => <Link {...props} />,
 };

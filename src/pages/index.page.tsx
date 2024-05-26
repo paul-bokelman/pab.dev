@@ -30,8 +30,8 @@ const Index: NextPage<Props> = ({ posts }) => {
         <div className="flex flex-col gap-2 text-sm dark:text-dark-sub">
           <p>
             Hey there! I&apos;m a Computer Science student with a keen interest in machine learning. I&apos;m passionate
-            about exploring how technology can make a difference. Feel free to check out my projects and blog posts to
-            see what I&apos;ve been working on!
+            about exploring how technology can make a difference. Feel free to check out my projects and inconsistent
+            pieces of writing to see what I&apos;ve been working on!
           </p>
           <div className="flex items-center gap-2">
             <Link href="https://github.com/paul-bokelman">github</Link>
@@ -41,14 +41,14 @@ const Index: NextPage<Props> = ({ posts }) => {
       </div>
       <div className="mt-6 flex flex-col gap-2 dark:text-dark-main">
         <h2 className="font-charter text-lg">My Favorite Projects</h2>
-        <div className="flex flex-col gap-2">
+        <div className="grid grid-cols-2 grid-rows-3 gap-2 grid-flow-col">
           {projects.map(({ tags, ...project }) => (
             <ProjectPreview key={project.name} tags={tags as unknown as TagNames} {...project} />
           ))}
         </div>
       </div>
       <div className="mt-6 flex flex-col gap-2 dark:text-dark-main">
-        <h2 className="font-charter text-lg">Posts</h2>
+        <h2 className="font-charter text-lg">Some Writing</h2>
         {posts.length == 0 ? (
           <span className="text-sm dark:text-dark-sub">No posts yet, check back soon...</span>
         ) : (

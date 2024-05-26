@@ -7,16 +7,18 @@ type PostPreviewProps = PostPreviewType;
 
 export const PostPreview: FC<PostPreviewProps> = ({ title, excerpt, slug, date, tags }) => {
   return (
-    <div className="flex flex-row items-center gap-2 hover:translate-x-5 group hover:scale-105 transition-transform hover:cursor-pointer">
+    <div className="flex flex-row items-center hover:translate-x-5 group hover:scale-105 transition-transform hover:cursor-pointer">
       <Link
         href={`/posts/${slug}`}
         className="flex text-sm px-2 py-1 hover:bg-gray-200 dark:group-hover:bg-dark-hover dark:text-dark-sub group-hover:text-dark-primary rounded-md cursor-pointer transition relative right-2"
       >
         {title}
       </Link>
-      {tags.map((name) => (
-        <Tag key={name} name={name} />
-      ))}
+      <div className="flex flex-row items-center gap-2">
+        {tags.map((name) => (
+          <Tag key={name} name={name} />
+        ))}
+      </div>
     </div>
   );
 };

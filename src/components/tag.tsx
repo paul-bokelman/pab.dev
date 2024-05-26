@@ -1,6 +1,5 @@
 import React from "react";
-import { IconType } from "react-icons";
-import { SiReact, SiTypescript } from "react-icons/si";
+import { SiPython, SiReact, SiTypescript, SiCplusplus, SiSolidity } from "react-icons/si";
 
 export type TagNames = typeof tagNames;
 
@@ -11,11 +10,14 @@ type Props = {
   withName?: boolean;
 };
 
-const tagNames = ["react", "typescript"] as const;
+const tagNames = ["react", "typescript", "python", "C++", "solidity"] as const;
 
 export const icons: Icons = {
   react: { icon: <SiReact />, color: "#5BD0EE" },
   typescript: { icon: <SiTypescript />, color: "#007ACC" },
+  python: { icon: <SiPython />, color: "#FFDC53" },
+  "C++": { icon: <SiCplusplus />, color: "#659BD3" },
+  solidity: { icon: <SiSolidity />, color: "#D2CEDF" },
 };
 
 export const Tag: React.FC<Props> = ({ name, withName }) => {

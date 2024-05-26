@@ -26,7 +26,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 
 const Post: NextPage<Props> = ({ post }) => {
   return (
-    <article>
+    <article className="mb-10">
       <Link
         href="/"
         className="absolute -top-10 md:-top-20 dark:text-dark-main dark:hover:text-dark-sub transition-colors"
