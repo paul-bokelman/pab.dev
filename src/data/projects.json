@@ -23,7 +23,16 @@
     "description": "Crypto NFT project. 8BitFish are 8000 completely randomized algorithmically generated pixel fish with exactly 2251799813685248 combinations",
     "image": "https://user-images.githubusercontent.com/72945168/140443831-7ba62298-4631-46af-bf60-9cb96a0c6359.png",
     "github": "https://github.com/8bitfish",
-    "website": "https://8bitfishnft.com/",
+    "website": "https://8bf.pab.dev/",
     "tags": ["react", "typescript", "solidity"]
+  },
+  {
+    "name": "Atmosphere",
+    "slug": "atmosphere",
+    "description": "Immersive audio book generation powered by Gemini built for Google's Gemini API Developer Competition",
+    "image": "https://github.com/user-attachments/assets/093a37cf-c353-4ec2-96e8-7228ed6e7d1e",
+    "github": "https://github.com/paul-bokelman/atmosphere",
+    "website": "https://atmosphere.pab.dev/",
+    "tags": ["react", "typescript", "python"]
   }
 ]
