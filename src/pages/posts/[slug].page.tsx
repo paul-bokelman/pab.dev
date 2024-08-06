@@ -33,7 +33,7 @@ const Post: NextPage<Props> = ({ post }) => {
       >
         PAB
       </Link>
-      <h1 className="text-2xl font-charter mb-1 dark:text-dark-main">{post.title}</h1>
+      <h1 className="text-lg md:text-2xl font-charter mb-1 dark:text-dark-main">{post.title}</h1>
       <div className="flex flex-row items-center gap-2 mb-4">
         <p className="text-sm font-charter text-[#7F7F7F]">{new Date(post.date).toLocaleDateString("en-US")}</p>
         <span className="text-black/25">•</span>

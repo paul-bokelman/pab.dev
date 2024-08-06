@@ -2,7 +2,7 @@ import React, { PropsWithChildren } from "react";
 import { Link } from "./link";
 
 export const P: React.FC<PropsWithChildren> = ({ children }) => {
-  return <p className="text-base leading-6 mb-4 dark:text-dark-sub">{children}</p>;
+  return <p className="text-xs md:text-base leading-5 md:leading-6 mb-4 dark:text-dark-sub">{children}</p>;
 };
 
 export const H2: React.FC<PropsWithChildren> = ({ children }) => {

@@ -21,13 +21,13 @@ const Index: NextPage<Props> = ({ posts }) => {
   return (
     <div>
       <div className="flex flex-col gap-5">
-        <div className="flex flex-row items-center">
-          <h1 className="font-charter text-2xl tracking-wide dark:text-dark-main">Paul A. Bokelman</h1>
-          <div className="relative text-sm mt-1.5">
-            <span className="ml-5 dark:text-dark-primary">Computer Scientist</span>
-          </div>
+        <div className="flex flex-col md:flex-row items-start md:items-center">
+          <h1 className="font-charter text-lg md:text-2xl tracking-wide dark:text-dark-main">Paul A. Bokelman</h1>
+          <span className="relative text-xs md:text-base md:top-[1px] md:ml-5 dark:text-dark-primary">
+            Computer Scientist
+          </span>
         </div>
-        <div className="flex flex-col gap-2 text-sm dark:text-dark-sub">
+        <div className="flex flex-col gap-2 text-xs md:text-sm dark:text-dark-sub">
           <p>
             Hey there! I&apos;m a Computer Science student with a keen interest in machine learning. I&apos;m passionate
             about exploring how technology can make a difference. Feel free to check out my projects and inconsistent
@@ -40,15 +40,15 @@ const Index: NextPage<Props> = ({ posts }) => {
         </div>
       </div>
       <div className="mt-6 flex flex-col gap-2 dark:text-dark-main">
-        <h2 className="font-charter text-lg">My Favorite Projects</h2>
-        <div className="grid grid-cols-2 grid-rows-3 gap-2 grid-flow-col">
+        <h2 className="font-charter md:text-lg">My Favorite Projects</h2>
+        <div className="flex flex-col gap-1 md:gap-2">
           {projects.map(({ tags, ...project }) => (
             <ProjectPreview key={project.name} tags={tags as unknown as TagNames} {...project} />
           ))}
         </div>
       </div>
       <div className="mt-6 flex flex-col gap-2 dark:text-dark-main">
-        <h2 className="font-charter text-lg">Some Writing</h2>
+        <h2 className="font-charter md:text-lg">Some Writing</h2>
         {posts.length == 0 ? (
           <span className="text-sm dark:text-dark-sub">No posts yet, check back soon...</span>
         ) : (
