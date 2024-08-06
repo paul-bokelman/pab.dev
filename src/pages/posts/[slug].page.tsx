@@ -27,13 +27,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 const Post: NextPage<Props> = ({ post }) => {
   return (
     <article className="mb-10">
-      <Link
-        href="/"
-        className="absolute -top-10 md:-top-20 dark:text-dark-main dark:hover:text-dark-sub transition-colors"
-      >
+      <Link href="/" className="absolute -top-10 md:-top-20 text-dark-main hover:text-dark-sub transition-colors">
         PAB
       </Link>
-      <h1 className="text-lg md:text-2xl font-charter mb-1 dark:text-dark-main">{post.title}</h1>
+      <h1 className="text-lg md:text-2xl font-charter mb-1 text-dark-main">{post.title}</h1>
       <div className="flex flex-row items-center gap-2 mb-4">
         <p className="text-sm font-charter text-[#7F7F7F]">{new Date(post.date).toLocaleDateString("en-US")}</p>
         <span className="text-black/25">•</span>

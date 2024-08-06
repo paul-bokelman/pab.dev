@@ -11,7 +11,7 @@ export const ProjectPreview: React.FC<ProjectPreviewProps> = (project) => {
         href={project.github}
         rel="noopener noreferrer"
         target="_blank"
-        className="flex text-xs md:text-sm px-2 py-1 hover:bg-gray-200 dark:group-hover:bg-dark-hover dark:text-dark-sub group-hover:text-dark-primary rounded-md cursor-pointer transition relative right-2"
+        className="flex text-xs md:text-sm px-2 py-1 hover:bg-gray-200 group-hover:bg-dark-hover text-dark-sub group-hover:text-dark-primary rounded-md cursor-pointer transition relative right-2"
       >
         {project.name}
       </a>

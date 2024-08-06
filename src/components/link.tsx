@@ -11,7 +11,7 @@ export const Link: React.FC<Props> = (props) => {
       href={props.href}
       rel="noreferrer"
       target="_blank"
-      className="dark:text-dark-primary dark:hover:text-dark-primary/80 underline cursor-pointer"
+      className="text-dark-primary hover:text-dark-primary/80 underline cursor-pointer"
     >
       {props.children}
     </a>

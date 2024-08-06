@@ -29,7 +29,7 @@ const Document: React.FC = () => {
         <meta name="theme-color" content="#ffffff" />
         <link rel="apple-touch-icon" sizes="180x180" href="/static/seo/apple-touch-icon.png"></link>
       </Head>
-      <body className="bg-[#F7F7F8] dark:bg-dark dark:selection:bg-dark-primary/30 dark:selection:text-dark-main">
+      <body className="bg-dark selection:bg-dark-primary/30 selection:text-dark-main">
         <Main />
         <NextScript />
       </body>
