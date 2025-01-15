@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body {
+  background-color: #101010;
+}
+
 @font-face {
   font-family: "Charter";
   src: url("/public/fonts/Charter.otf");
