@@ -29,9 +29,9 @@ const Index: NextPage<Props> = ({ posts }) => {
         </div>
         <div className="flex flex-col gap-2 text-xs md:text-sm text-dark-sub">
           <p>
-            Hey there! I&apos;m a Computer Science student with a keen interest in machine learning. I&apos;m passionate
-            about exploring how technology can make a difference. Feel free to check out my projects and inconsistent
-            pieces of writing to see what I&apos;ve been working on!
+            Hey there! I&apos;m a Computer Science student with a keen interest in the intersection between psychology,
+            biology, and computation. I&apos;m passionate about other domains including physics, mathematics, and
+            philosophy. I love to learn and create, and I&apos;m always looking for new opportunities to do so.
           </p>
           <div className="flex items-center gap-2">
             <Link href="https://github.com/paul-bokelman">github</Link>
@@ -53,9 +53,11 @@ const Index: NextPage<Props> = ({ posts }) => {
           <span className="text-sm text-dark-sub">No posts yet, check back soon...</span>
         ) : (
           <div className="flex flex-col gap-2">
-            {posts.map((post) => (
-              <PostPreview key={post.slug} {...post} />
-            ))}
+            {posts
+              .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+              .map((post) => (
+                <PostPreview key={post.slug} {...post} />
+              ))}
           </div>
         )}
       </div>

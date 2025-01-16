@@ -11,7 +11,7 @@ export const H2: React.FC<PropsWithChildren> = ({ children }) => {
 
 export const CodeBlock: React.FC<PropsWithChildren> = ({ children }) => {
   return (
-    <pre className="border border-black/20 border-dark-box-border bg-dark-box-bg rounded-md p-3 my-4 text-sm text-dark-sub [&>code]:bg-transparent [&>code]:text-dark-sub">
+    <pre className="overflow-x-scroll border border-black/20 border-dark-box-border bg-dark-box-bg rounded-md p-3 my-4 text-sm text-dark-sub [&>code]:bg-transparent [&>code]:text-dark-sub">
       {children}
     </pre>
   );
@@ -27,4 +27,8 @@ export const components = {
   pre: (props: any) => <CodeBlock {...props} />,
   code: (props: any) => <Code {...props} />,
   a: (props: any) => <Link {...props} />,
+  li: (props: any) => (
+    <li className="text-xs md:text-base leading-5 md:leading-6 mb-4 text-dark-sub">{props.children}</li>
+  ),
+  ul: (props: any) => <ul className="list-disc pl-6">{props.children}</ul>,
 };

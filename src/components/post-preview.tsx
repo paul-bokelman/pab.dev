@@ -14,11 +14,11 @@ export const PostPreview: FC<PostPreviewProps> = ({ title, excerpt, slug, date, 
       >
         {title}
       </Link>
-      {/* <div className="flex flex-row items-center gap-2">
+      <div className="flex flex-row items-center gap-2">
         {tags.map((name) => (
           <Tag key={name} name={name} />
         ))}
-      </div> */}
+      </div>
     </div>
   );
 };
