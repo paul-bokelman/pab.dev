@@ -1,11 +1,11 @@
 ---
 title: "Questions"
-excerpt: "I get curious sometimes. Here are my questions."
-date: "2025-01-15"
-complete: false
-tags: ["philosophy"]
+excerpt: "questions i keep coming back to without much progress, written down mostly so they stop circling"
+date: 2025-01-15
+published: false
+tags:
+  - philosophy
 ---
-
 I get curious sometimes. Here are my questions. If you have an answer to any of them, email me.
 
 ```

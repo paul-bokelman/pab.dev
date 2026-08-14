@@ -1,11 +1,13 @@
 ---
 title: "Physical Reward System — Exploiting My Psychology"
-excerpt: "The journey of Club Compass, from it's humble beginnings to it's untimely end"
-date: "2024-05-05"
-complete: false
-tags: ["typescript", "react", "C++"]
+excerpt: "building a physical reward system to exploit my own psychology, and finding out how quickly i saw through it"
+date: 2024-05-05
+published: false
+tags:
+  - typescript
+  - react
+  - C++
 ---
-
 Check out Club Compass on [github](https://github.com/paul-bokelman/cc).
 
 I feel like writing so here's a short story of my journey into the world of machine learning and genetic algorithms.

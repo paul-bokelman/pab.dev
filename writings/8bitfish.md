@@ -1,11 +1,13 @@
 ---
 title: "8Bitfish — Technology, Teamwork, and Trauma"
-excerpt: "The full story of 8BF"
-date: "2024-05-05"
-complete: false
-tags: ["react", "typescript", "solidity"]
+excerpt: "the whole story of 8bf, including the parts about technology, the parts about teamwork, and the parts i'd rather have skipped"
+date: 2024-05-05
+published: false
+tags:
+  - react
+  - typescript
+  - solidity
 ---
-
 Check out 8Bitfish on [github](https://github.com/8bitfish).
 
 Before 8Bitfish I knew very little about programming or working in a team. I was currently learning React (knowing very little javascript) and building small projects to try to understand the basics of building websites. During this time I was more interested in web design and animation, only having learned the basics of web development to participate in a project called [ClubCompass](https://github.com/paul-bokelman/cc). As the weeks went by, I gained more and more experience and knowledge about React and the realm of web development and even secretly liked it...

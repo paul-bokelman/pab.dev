@@ -1,0 +1,17 @@
+{
+  "attachmentFolderPath": "public/vault",
+  "newFileLocation": "folder",
+  "newFileFolderPath": "writings",
+  "alwaysUpdateLinks": true,
+  "useMarkdownLinks": false,
+  "showUnsupportedFiles": false,
+  "promptDelete": false,
+  "userIgnoreFilters": [
+    "node_modules/",
+    ".next/",
+    "src/",
+    "public/static/",
+    "public/fonts/",
+    "templates/"
+  ]
+}

@@ -1,12 +1,13 @@
 ---
-title: "NEAT — Evolving Digitial Intelligence"
-excerpt: "A short story of my journey into the world of genetic algorithms."
-date: "2024-05-05"
-complete: false
-tags: ["python"]
+title: "Club Compass — The Future of Inspiration"
+excerpt: "club compass from its humble beginnings to its untimely end, and what i'd keep if i started it again tomorrow"
+date: 2024-05-05
+published: false
+tags:
+  - typescript
+  - react
 ---
-
-Check out genetic color on [github](https://github.com/paul-bokelman/genetic-color).
+Check out Club Compass on [github](https://github.com/paul-bokelman/cc).
 
 I feel like writing so here's a short story of my journey into the world of machine learning and genetic algorithms.
 

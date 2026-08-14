@@ -1,19 +1,24 @@
 import React from "react";
+import { useInteractionSounds } from "./sound";
 
 type Props = {
   href: string;
   children: React.ReactNode;
 };
 
-export const Link: React.FC<Props> = (props) => {
+export const Link: React.FC<Props> = ({ href, children }) => {
+  const external = /^https?:\/\//.test(href);
+  const sounds = useInteractionSounds();
+
   return (
     <a
-      href={props.href}
-      rel="noreferrer"
-      target="_blank"
-      className="text-dark-primary hover:text-dark-primary/80 underline cursor-pointer"
+      href={href}
+      rel={external ? "noopener noreferrer" : undefined}
+      target={external ? "_blank" : undefined}
+      className="link-default active:brightness-75"
+      {...sounds}
     >
-      {props.children}
+      {children}
     </a>
   );
 };

@@ -26,10 +26,18 @@ const Document: React.FC = () => {
         <meta name="twitter:description" content="Paul A. Bokelman's Personal Site" key="twitter-description" />
         <meta name="twitter:image" content="/static/seo/og-image.png" key="twitter-image" />
         <meta name="twitter:image:alt" content="PAB Banner" key="twitter-image-alt" />
-        <meta name="theme-color" content="#ffffff" />
+        <meta name="theme-color" content="#13110f" />
         <link rel="apple-touch-icon" sizes="180x180" href="/static/seo/apple-touch-icon.png"></link>
+        <noscript>
+          {/* entrance animations start from opacity 0 — without js, show everything */}
+          <style
+            dangerouslySetInnerHTML={{
+              __html: "[data-motion]{opacity:1!important;transform:none!important}",
+            }}
+          />
+        </noscript>
       </Head>
-      <body className="bg-dark selection:bg-dark-primary/30 selection:text-dark-main">
+      <body className="min-h-[100dvh] max-w-[100dvw] overflow-x-clip bg-gray-950 text-gray-250 antialiased">
         <Main />
         <NextScript />
       </body>

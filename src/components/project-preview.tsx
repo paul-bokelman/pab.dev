@@ -1,25 +1,17 @@
 import React from "react";
-import projects from "../data/projects.json";
-import { type TagNames, Tag } from "./tag";
+import type { Project } from "types";
+import { Card } from "./card";
+import { Tags } from "./tag";
 
-type ProjectPreviewProps = Omit<(typeof projects)[number], "tags"> & { tags: TagNames };
+const host = (url: string) => url.replace(/^https?:\/\//, "").replace(/\/$/, "");
 
-export const ProjectPreview: React.FC<ProjectPreviewProps> = (project) => {
-  return (
-    <div className="flex flex-row items-center hover:translate-x-3 group hover:scale-105 transition-transform">
-      <a
-        href={project.github}
-        rel="noopener noreferrer"
-        target="_blank"
-        className="flex text-xs md:text-sm px-2 py-1 hover:bg-gray-200 group-hover:bg-dark-hover text-dark-sub group-hover:text-dark-primary rounded-md cursor-pointer transition relative right-2"
-      >
-        {project.name}
-      </a>
-      <div className="flex flex-row items-center gap-2">
-        {project.tags.map((name) => (
-          <Tag key={name} name={name} />
-        ))}
-      </div>
-    </div>
-  );
-};
+export const ProjectPreview: React.FC<Project> = ({ name, description, github, website, tags }) => (
+  <Card
+    href={website || github}
+    external
+    title={name}
+    description={description}
+    meta={<span>{website ? host(website) : "github"}</span>}
+    trailing={<Tags tags={tags} />}
+  />
+);

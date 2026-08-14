@@ -1,11 +1,11 @@
 ---
 title: "Genetic Color — My Intro to Machine Learning"
-excerpt: "A short story of my journey into the world of genetic algorithms."
-date: "2024-05-05"
-complete: true
-tags: ["python"]
+excerpt: "my first honest run at machine learning, which turned out to be a few hundred lines of guessing colors until the guessing improved"
+date: 2024-05-05
+published: true
+tags:
+  - python
 ---
-
 Check out genetic color on [github](https://github.com/paul-bokelman/genetic-color).
 
 I feel like writing so here's a short story of my journey into the world of machine learning and genetic algorithms.
@@ -16,8 +16,8 @@ Initially I tried building a simple [neural network](https://github.com/paul-bok
 
 After very brief research into genetic algorithms, I found a search problem (find a color) and jumped right into it. My previous understanding of evolution made the process very intuitive and enjoyable and within just a couple of days I had completed my first (very simple) genetic algorithm.
 
-<div class="video">
-  <video loop="true" width="500px" autoplay="autoplay" muted>
+<div className="video">
+  <video loop width="500px" autoPlay muted playsInline>
     <source
       src="https://github.com/paul-bokelman/pab.dev/assets/72945168/f71cc070-0866-4f79-a304-c9db0c513f8f"
       type="video/mp4"

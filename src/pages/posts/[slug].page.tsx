@@ -1,10 +1,13 @@
 import type { NextPage, GetStaticProps, GetStaticPaths } from "next";
 import type { ParsedUrlQuery } from "querystring";
-import type { Post } from "types";
+import type { Writing } from "types";
 import { MDXRemote } from "next-mdx-remote";
-import { getPostBySlug, getSlugs } from "lib/api";
+import { getWriting, getWritingSlugs } from "lib/api";
 import { components } from "components/prose";
-import { Tag } from "components/tag";
+import { Tags } from "components/tag";
+import { formatDate } from "components/post-preview";
+import { Entrance, EntranceItem } from "components/motion";
+import { useInteractionSounds } from "components/sound";
 import Link from "next/link";
 
 interface IParams extends ParsedUrlQuery {
@@ -12,48 +15,56 @@ interface IParams extends ParsedUrlQuery {
 }
 
 interface Props {
-  post: Post;
+  post: Writing;
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
+export const getStaticProps: GetStaticProps<Props> = async ({ params }) => {
   const { slug } = params as IParams;
-  const post = await getPostBySlug(slug);
 
   return {
-    props: { post },
+    props: { post: await getWriting(slug) },
   };
 };
 
 const Post: NextPage<Props> = ({ post }) => {
+  const sounds = useInteractionSounds();
+
   return (
-    <article className="mb-10 w-full">
-      <Link href="/" className="absolute -top-10 md:-top-20 text-dark-main hover:text-dark-sub transition-colors">
-        PAB
-      </Link>
-      <h1 className="text-lg md:text-2xl font-charter mb-1 text-dark-main">{post.title}</h1>
-      <div className="flex flex-row items-center gap-2 mb-4">
-        <p className="relative top-0.5 text-sm font-charter text-[#7F7F7F]">
-          {new Date(post.date).toLocaleDateString("en-US")}
-        </p>
-        <span className="text-[#7F7F7F]">•</span>
-        <div className="flex flex-row items-center gap-3">
-          {post.tags.map((name) => (
-            <Tag key={name} name={name} withName />
-          ))}
-        </div>
-      </div>
-      <MDXRemote {...post.source} components={components} />
-    </article>
+    <Entrance className="flex w-full flex-col">
+      <EntranceItem>
+        <Link
+          href="/"
+          {...sounds}
+          className="focus-outline-tight mb-8 inline-block w-fit font-mono text-xs text-gray-600 duration-150 ease-circ-out hover:text-gray-300 active:brightness-75"
+        >
+          ← back
+        </Link>
+      </EntranceItem>
+
+      <EntranceItem>
+        <header className="mb-10 flex flex-col gap-3">
+          <h1 className="text-pretty text-2xl sm:text-3xl">{post.title}</h1>
+          <span className="flex min-w-0 flex-row items-center justify-between gap-2 font-mono">
+            <time dateTime={post.date} className="shrink-0 text-xs text-gray-600">
+              {formatDate(post.date)}
+            </time>
+            <Tags tags={post.tags} />
+          </span>
+        </header>
+      </EntranceItem>
+
+      <EntranceItem>
+        <article>
+          <MDXRemote {...post.source} components={components} />
+        </article>
+      </EntranceItem>
+    </Entrance>
   );
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const slugs = getSlugs();
-
   return {
-    paths: slugs.map((slug) => {
-      return { params: { slug } };
-    }),
+    paths: getWritingSlugs().map((slug) => ({ params: { slug } })),
     fallback: false,
   };
 };

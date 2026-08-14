@@ -2,15 +2,156 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  background-color: #101010;
+@layer base {
+  html {
+    scroll-padding: 4rem;
+    scroll-behavior: smooth;
+    overscroll-behavior-y: none;
+  }
+
+  body {
+    background-color: theme("colors.gray.950");
+    color: theme("colors.gray.250");
+    font-family: theme("fontFamily.sans");
+    font-size: theme("fontSize.base[0]");
+    line-height: 1.5;
+    font-variant-numeric: tabular-nums;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: theme("fontFamily.serif");
+    letter-spacing: -0.025em;
+    /* Zodiak is variable — 340 is its drawn default and keeps the hairlines thin */
+    font-weight: 340;
+    font-variation-settings: "wght" 340;
+    text-wrap: balance;
+  }
+
+  h1 {
+    font-size: theme("fontSize.3xl[0]");
+    line-height: 1.2;
+  }
+  h2 {
+    font-size: theme("fontSize.2xl[0]");
+    line-height: 1.3333;
+  }
+  h3 {
+    font-size: theme("fontSize.xl[0]");
+    line-height: 1.4;
+  }
+  h4 {
+    font-size: theme("fontSize.lg[0]");
+    line-height: 1.5556;
+  }
+
+  @media (min-width: 40rem) {
+    h1 {
+      font-size: theme("fontSize.4xl[0]");
+      line-height: 1.1111;
+    }
+    h2 {
+      font-size: theme("fontSize.3xl[0]");
+      line-height: 1.2;
+    }
+    h3 {
+      font-size: theme("fontSize.2xl[0]");
+      line-height: 1.3333;
+    }
+    h4 {
+      font-size: theme("fontSize.xl[0]");
+      line-height: 1.4;
+    }
+  }
+
+  p {
+    line-height: 1.55;
+  }
+
+  b,
+  strong {
+    font-weight: 600;
+  }
+
+  /* muting = blend halfway toward the page background, relative to inherited color */
+  em,
+  i,
+  s,
+  del {
+    color: color-mix(in srgb, currentColor 50%, theme("colors.gray.950"));
+  }
+
+  /* obsidian's ==highlight== */
+  mark {
+    background-color: color-mix(in srgb, theme("colors.yellow.500") 22%, transparent);
+    color: inherit;
+    padding: 0 0.15em;
+  }
+
+  ::selection {
+    color: theme("colors.gray.100");
+    background-color: color-mix(in srgb, theme("colors.orange.500") 30%, transparent);
+  }
+
+  code ::selection {
+    background-color: #ca9e6620;
+  }
+
+  /* a dashed ring is always reserved, so focus never shifts layout */
+  :where(a[href], button, [role="button"], input:not([type="hidden"]), select, textarea, summary) {
+    outline: 2px dashed transparent;
+    outline-offset: var(--focus-outline-offset, 2px);
+    position: relative;
+    z-index: 0;
+  }
+
+  :where(a[href], button, [role="button"], input:not([type="hidden"]), select, textarea, summary):focus-visible {
+    isolation: isolate;
+    outline-color: currentColor;
+    z-index: 10;
+  }
 }
 
-@font-face {
-  font-family: "Charter";
-  src: url("/public/fonts/Charter.otf");
+@layer utilities {
+  .text-muted {
+    color: color-mix(in srgb, currentColor 50%, theme("colors.gray.950"));
+  }
+
+  .link-default {
+    color: color-mix(in srgb, currentColor 50%, theme("colors.gray.950"));
+    text-decoration-line: underline;
+    transition-duration: 150ms;
+    --focus-outline-offset: 1px;
+  }
+
+  .link-default:hover {
+    filter: brightness(150%);
+  }
+
+  .focus-outline-tight {
+    --focus-outline-offset: 1px;
+  }
+
+  .corner-squircle {
+    corner-shape: superellipse(1.6);
+  }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* mdx: inline video figure */
 .video {
   position: relative;
   width: 100%;
@@ -23,11 +164,12 @@ body {
 }
 
 .video video {
-  border-radius: 0.4rem;
+  width: 100%;
 }
 
 .video sub {
-  font-size: 0.8rem;
-  color: #808080;
+  font-family: theme("fontFamily.mono");
+  font-size: theme("fontSize.xs[0]");
+  color: theme("colors.gray.600");
   margin-top: 0.5rem;
 }

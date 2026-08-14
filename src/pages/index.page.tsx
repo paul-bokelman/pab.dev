@@ -1,67 +1,136 @@
 import React from "react";
 import type { NextPage, GetStaticProps } from "next";
-import type { PostPreview as PostPreviewType } from "types";
-import { getPreviewPosts } from "lib/api";
-import { PostPreview, ProjectPreview, Link, TagNames } from "components";
-import projects from "../data/projects.json";
+import type { WritingPreview, Project } from "types";
+import { getWritingPreviews, getProjects } from "lib/api";
+import {
+  PostPreview,
+  ProjectPreview,
+  Section,
+  FadedFrame,
+  Link,
+  Entrance,
+  EntranceItem,
+  TextReveal,
+  Underline,
+  FontSwap,
+  useSound,
+} from "components";
 
 interface Props {
-  posts: Array<PostPreviewType>;
+  posts: Array<WritingPreview>;
+  projects: Array<Project>;
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  const posts = await getPreviewPosts();
-
+export const getStaticProps: GetStaticProps<Props> = async () => {
   return {
-    props: { posts },
+    props: { posts: getWritingPreviews(), projects: getProjects() },
   };
 };
 
-const Index: NextPage<Props> = ({ posts }) => {
+/** reads as a word in the sentence, behaves like a control */
+const SoundToggle: React.FC = () => {
+  const { muted, toggle } = useSound();
+
   return (
-    <div>
-      <div className="flex flex-col gap-5">
-        <div className="flex flex-col md:flex-row items-start md:items-center">
-          <h1 className="font-charter text-lg md:text-2xl tracking-wide text-dark-main">Paul A. Bokelman</h1>
-          <span className="relative text-xs md:text-base md:top-[1px] md:ml-5 text-dark-primary">
-            Computer Scientist
-          </span>
-        </div>
-        <div className="flex flex-col gap-2 text-xs md:text-sm text-dark-sub">
+    <button
+      type="button"
+      onClick={toggle}
+      aria-pressed={!muted}
+      className="link-default focus-outline-tight inline border-none bg-transparent p-0 align-baseline font-[inherit] text-[length:inherit] active:brightness-75"
+    >
+      {muted ? "turn it back on" : "turn that off"}
+    </button>
+  );
+};
+
+const Index: NextPage<Props> = ({ posts, projects }) => {
+  return (
+    <Entrance className="flex w-full flex-col gap-8 sm:gap-12">
+      <EntranceItem>
+        <section className="flex w-full flex-col gap-6">
+          <div className="flex flex-col justify-center gap-4">
+            <h1>hi, i&apos;m paul bokelman</h1>
+            <FontSwap
+              text="i think about thinking machines"
+              className="-mt-4 mb-2 block font-mono text-sm leading-none tracking-[-0.0125em] text-muted"
+            />
+          </div>
+
           <p>
-            Hey there! I&apos;m a Computer Science student with a keen interest in the intersection between psychology,
-            biology, and computation. I&apos;m passionate about other domains including physics, mathematics, and
-            philosophy. I love to learn and create, and I&apos;m always looking for new opportunities to do so.
+            i study computer science, mostly because it kept turning out to be the shortest path to everything else i
+            wanted to understand. what actually holds my attention is{" "}
+            <Underline delay={900}>the seam where psychology, biology, and computation meet</Underline>, where the same
+            handful of ideas keep showing up wearing different notation and pretending not to know each other
           </p>
-          <div className="flex items-center gap-2">
-            <Link href="https://github.com/paul-bokelman">github</Link>
-            <Link href="https://twitter.com/paul_bokelman">twitter</Link>
-          </div>
-        </div>
-      </div>
-      <div className="mt-6 flex flex-col gap-2 text-dark-main">
-        <h2 className="font-charter md:text-lg">My Favorite Projects</h2>
-        <div className="flex flex-col gap-1 md:gap-2">
-          {projects.map(({ tags, ...project }) => (
-            <ProjectPreview key={project.name} tags={tags as unknown as TagNames} {...project} />
-          ))}
-        </div>
-      </div>
-      <div className="mt-6 flex flex-col gap-2 text-dark-main">
-        <h2 className="font-charter md:text-lg">Some Writing</h2>
-        {posts.length == 0 ? (
-          <span className="text-sm text-dark-sub">No posts yet, check back soon...</span>
-        ) : (
-          <div className="flex flex-col gap-2">
-            {posts
-              .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
-              .map((post) => (
-                <PostPreview key={post.slug} {...post} />
+          <p>
+            physics, mathematics, and philosophy get a fair share of the remaining hours, usually at the point where
+            they stop behaving like separate subjects. i learn something, then build something to find out whether i
+            actually learned it, which is slower than reading and considerably harder to fool
+          </p>
+          <p>
+            if you look closely enough, though, most of this amounts to rearranging text in a few files until the
+            computer stops complaining, and then writing down why it ever complained in the first place
+          </p>
+        </section>
+      </EntranceItem>
+
+      <EntranceItem>
+        <Section
+          title="things i built"
+          description="projects i finished, or at least stopped working on, which for these purposes counts as the same thing"
+        >
+          <FadedFrame>
+            <ul className="grid gap-2 lg:grid-cols-3">
+              {projects.map((project) => (
+                <ProjectPreview key={project.slug} {...project} />
               ))}
-          </div>
-        )}
-      </div>
-    </div>
+            </ul>
+          </FadedFrame>
+        </Section>
+      </EntranceItem>
+
+      <EntranceItem>
+        <Section
+          title="recently written"
+          description="notes i mostly wrote to find out whether i understood the thing at all, then kept because deleting them felt worse"
+        >
+          <FadedFrame>
+            {posts.length === 0 ? (
+              <p className="p-4 text-sm text-gray-600">
+                nothing here yet, which is either a scheduling problem or a nerve problem
+              </p>
+            ) : (
+              <ul className="grid gap-2 lg:grid-cols-3">
+                {posts.map((post) => (
+                  <PostPreview key={post.slug} {...post} />
+                ))}
+              </ul>
+            )}
+          </FadedFrame>
+        </Section>
+      </EntranceItem>
+
+      <EntranceItem>
+        <section className="flex w-full flex-col gap-10">
+          <p className="text-sm text-muted">
+            the two halves overlap more than that makes them sound. something i pick up in a class turns into a project
+            because building it is the only way i find out what i missed, and{" "}
+            <Underline delay={600} color="rgba(186, 150, 89, 0.32)">
+              a project turns into writing for the same reason
+            </Underline>
+            . most of it ends up on <Link href="https://github.com/paul-bokelman">github</Link>, the rest gets said
+            badly on <Link href="https://twitter.com/paul_bokelman">twitter</Link>. this page also makes a small amount
+            of noise, and you can <SoundToggle /> whenever you like
+          </p>
+
+          <TextReveal
+            text="you scrolled all the way down here, which is already more attention than this page was built to expect"
+            sound="pencil"
+            className="block text-pretty text-center font-handwritten text-2xl/8 tracking-tight text-gray-500 xl:px-8 xl:text-3xl/10"
+          />
+        </section>
+      </EntranceItem>
+    </Entrance>
   );
 };
 

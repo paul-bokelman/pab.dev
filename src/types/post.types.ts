@@ -1,18 +1,27 @@
 import type { MDXRemoteSerializeResult } from "next-mdx-remote";
-import type { TagNames } from "../components/tag";
 
-export interface PostFrontmatter {
+/** tags are whatever the vault says they are */
+export type Tag = string;
+
+export interface WritingPreview {
+  slug: string;
   title: string;
-  date: string;
   excerpt: string;
-  complete: boolean;
-  tags: TagNames;
+  /** ISO string — yaml dates are normalised at read time so props stay serialisable */
+  date: string;
+  tags: Array<Tag>;
 }
 
-export interface Post extends PostFrontmatter {
+export interface Writing extends WritingPreview {
   source: MDXRemoteSerializeResult<Record<string, unknown>>;
 }
 
-export interface PostPreview extends PostFrontmatter {
+export interface Project {
   slug: string;
+  name: string;
+  description: string;
+  github: string;
+  website: string;
+  tags: Array<Tag>;
+  order: number;
 }
