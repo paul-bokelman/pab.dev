@@ -5,13 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>pab</title>
     <link rel="stylesheet" href="/wordmark/wordmark.css" />
+    <script src="/wordmark/wordmark.js" defer></script>
     <style>
       :root { color-scheme: light; }
       html, body { height: 100%; margin: 0; background: #fff; color: #000; }
       body { display: grid; place-items: center; }
+      main { display: grid; justify-items: center; gap: 14px; }
+      .links { display: flex; gap: 14px; }
+      .links a { display: block; color: #000; }
+      .links svg { display: block; width: 20px; height: 20px; overflow: visible; }
+      /* Same boil as the wordmark: the icons swap between two wobbles. */
+      .links use { filter: url(#wobble-a); }
+      .boil .links use { filter: url(#wobble-b); }
     </style>
   </head>
   <body>
-    <h1 class="wordmark"><span>super connector</span><span aria-hidden="true">super connector</span></h1>
+    <svg width="0" height="0" style="position: absolute" aria-hidden="true">
+      <defs>
+        <filter id="wobble-a"><feTurbulence type="fractalNoise" baseFrequency="0.12" numOctaves="2" seed="2" /><feDisplacementMap in="SourceGraphic" scale="1.4" /></filter>
+        <filter id="wobble-b"><feTurbulence type="fractalNoise" baseFrequency="0.12" numOctaves="2" seed="9" /><feDisplacementMap in="SourceGraphic" scale="1.4" /></filter>
+        <g id="youtube" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3.3 7.2C3.7 5.5 5 5 7 4.9c3.5-.3 7-.2 10.2.1 2.1.2 3.4.9 3.7 2.5.4 2.4.3 6.5-.1 9-.3 1.7-1.6 2.4-3.7 2.6-3.5.3-7 .2-10.3 0-2-.2-3.3-.8-3.6-2.5-.4-2.9-.4-6.6.1-9.4z" />
+          <path d="M9.8 8.5l6 3.6-5.9 3.5z" fill="#fff" stroke="none" />
+        </g>
+        <g id="twitter" fill="currentColor" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3.5 6.2c2.2 2.6 5 4.2 8.6 4.4-.6-2.6 1-5 3.5-5.2 1.2-.1 2.3.4 3 1.2l2.4-.9-1.2 2 1.9-.4-1.8 1.8c0 6-4.5 10.7-10.6 10.7-2.1 0-4.2-.6-5.9-1.8 2 .1 4-.5 5.4-1.7-2-.2-3.4-1.4-4-3.1l1.9-.1C4.5 12.3 3.3 10.7 3.4 8.8l1.8.6C3.9 8.4 3.2 7.4 3.5 6.2z" />
+        </g>
+        <image id="woolbound" href="/woolbound.png" y="1" width="24" height="22" />
+      </defs>
+    </svg>
+    <main>
+      <nav class="links">
+        <a href="https://www.youtube.com/@paulbokelman" aria-label="YouTube"><svg viewBox="0 0 24 24"><use href="#youtube" /></svg></a>
+        <a href="https://x.com/paulbokelman" aria-label="Twitter"><svg viewBox="0 0 24 24"><use href="#twitter" /></svg></a>
+        <a href="https://www.wool.social/" aria-label="Woolbound"><svg viewBox="0 0 24 24"><use href="#woolbound" /></svg></a>
+      </nav>
+      <h1 class="wordmark">black sheep mentality</h1>
+    </main>
   </body>
 </html>

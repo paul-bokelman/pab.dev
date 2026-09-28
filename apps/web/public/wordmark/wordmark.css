@@ -1,13 +1,6 @@
-/* Woolbound's wordmark boil: both faces stacked, swapped five times a second.
-   Markup: <h1 class="wordmark"><span>text</span><span aria-hidden="true">text</span></h1> */
+/* Woolbound's wordmark boil: wordmark.js toggles `boil` on <html> five times a second,
+   swapping the face. Markup: <h1 class="wordmark">text</h1> */
 @font-face { font-family: "Woolbound Primary"; src: url(WoolboundPrimary.woff2) format("woff2"); font-display: block; }
 @font-face { font-family: "Woolbound Secondary"; src: url(WoolboundSecondary.woff2) format("woff2"); font-display: block; }
-.wordmark { display: grid; margin: 0; font-size: 28px; font-weight: normal; }
-.wordmark span { grid-area: 1 / 1; text-align: center; animation: boil 0.4s linear infinite; }
-.wordmark span:first-child { font-family: "Woolbound Primary"; }
-.wordmark span:last-child { font-family: "Woolbound Secondary"; animation-delay: -0.2s; }
-@keyframes boil { 0%, 49.9% { opacity: 1; } 50%, 100% { opacity: 0; } }
-@media (prefers-reduced-motion: reduce) {
-  .wordmark span { animation: none; }
-  .wordmark span:last-child { opacity: 0; }
-}
+.wordmark { margin: 0; font: normal 28px "Woolbound Primary"; text-align: center; user-select: none; -webkit-user-select: none; pointer-events: none; }
+.boil .wordmark { font-family: "Woolbound Secondary"; }

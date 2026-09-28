@@ -74,6 +74,7 @@ export const underConstruction = () => `<!doctype html>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>pot</title>
     <link rel="stylesheet" href="/wordmark/wordmark.css" />
+    <script src="/wordmark/wordmark.js" defer></script>
     <style>
       :root { color-scheme: light; }
       html, body { height: 100%; margin: 0; background: #fff; color: #000; }
@@ -81,6 +82,6 @@ export const underConstruction = () => `<!doctype html>
     </style>
   </head>
   <body>
-    <h1 class="wordmark"><span>under construction</span><span aria-hidden="true">under construction</span></h1>
+    <h1 class="wordmark">under construction</h1>
   </body>
 </html>`;
