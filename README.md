@@ -14,9 +14,6 @@ bun run test && bun run typecheck
 bun run deploy       # both Workers
 ```
 
-Both Workers serve on workers.dev until pab.dev's nameservers point at Cloudflare; then
-flip `workers_dev` and uncomment `routes` in each `wrangler.jsonc`.
-
 ## pot
 
 The goal lives in `apps/pot/src/pot.ts`. While `underConstruction` is on, the live page
