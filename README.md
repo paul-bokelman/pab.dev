@@ -1,68 +1,39 @@
-This is a personal portfolio website that showcases my work, projects, and blog posts. It is built with React, Typescript, and NextJS.
+# pab.dev
 
-Check out the live site [here](https://www.pab.dev/).
+Two Cloudflare Workers in a Bun workspace.
 
-## The vault
+| App | Domain | What |
+| --- | --- | --- |
+| `apps/web` | pab.dev | Static landing page (`public/`) and the shared wordmark (`public/wordmark/`) |
+| `apps/pot` | pot.pab.dev | One funding goal with a meter, paid through a Stripe Payment Link |
 
-This repo **is** an Obsidian vault called `pab.dev`. Two folders are content:
-
-| folder      | becomes                          | route             |
-| ----------- | -------------------------------- | ----------------- |
-| `writings/` | the "recently written" section   | `/posts/<slug>`   |
-| `projects/` | the "things i built" section     | external link     |
-
-The slug is the filename, so `writings/genetic color.md` publishes to `/posts/genetic-color`.
-Renaming a published note changes its URL.
-
-### Publishing
-
-Everything is a draft until you say otherwise. A note needs `published: true` in its
-frontmatter to appear — without it there's no card, no route, and no static page.
-
-Templates for both note types live in `templates/` (core Templates plugin, `Cmd-P → Insert template`).
-
-```yaml
-# writings/
-title: ""       # card heading and page title
-excerpt: ""     # the two-line description on the card
-date: 2026-08-14
-published: false
-tags: [python]  # freeform, rendered as mono metadata
+```sh
+bun install
+bun run dev          # pab.dev on :8787, pot on :8788 with a fake pot and a dev bar
+bun run test && bun run typecheck
+bun run deploy       # both Workers
 ```
 
-```yaml
-# projects/
-name: ""
-description: ""
-github: ""      # card links here...
-website: ""     # ...unless this is set
-order: 1        # lowest first
-published: false
-tags: [react, typescript]
-```
+Both Workers serve on workers.dev until pab.dev's nameservers point at Cloudflare; then
+flip `workers_dev` and uncomment `routes` in each `wrangler.jsonc`.
 
-Project note bodies are not rendered anywhere — they're scratch space.
+## pot
 
-### Obsidian markdown
+The goal lives in `apps/pot/src/pot.ts`. While `underConstruction` is on, the live page
+says only that and never calls Stripe. The meter is the sum of paid Checkout Sessions
+on that Payment Link, read from Stripe and cached for a minute. There is no database.
 
-Vault-only syntax is translated at build time (`src/lib/obsidian.ts`):
+To start a goal:
 
-- `[[note]]`, `[[note|alias]]`, `[[note#heading]]` resolve against every published
-  writing, then against project links. Anything unresolved renders as plain text
-  rather than a dead link.
-- `![[image.png]]` and `![[clip.mp4|caption]]` embed from `public/vault/`, which is
-  where Obsidian is configured to drop attachments.
-- `==highlight==`, `> [!callout]`, and `^block-ids` are handled.
-- Embedding a whole note (`![[note]]`) becomes a link — a static page can't inline it.
+1. Stripe → Payment Links → new link, product "Pot", **customer chooses price**.
+   Optionally set its after-payment redirect to `https://pot.pab.dev`.
+2. Put its URL and `plink_…` id in `pot.ts`, along with the title, goal and promise.
+3. Once per account: create a restricted key with **Checkout Sessions: Read** only, then
+   `cd apps/pot && bunx wrangler secret put STRIPE_KEY`.
+4. `bun run deploy`.
 
-Raw HTML in a note is treated as JSX, so use `className`, not `class`.
+`bun run dev` never touches Stripe: the dev bar and the "Add to the pot" button move a
+fake in-memory total, and it links to the under-construction page. To try the real path, put a test-mode key in `apps/pot/.dev.vars`
+and a test Payment Link in `pot.ts`, then `cd apps/pot && bun run dev:stripe`.
 
-### Sync
-
-The **Git** plugin is installed and configured to commit and push every 10 minutes,
-pulling first. Vercel deploys on push, so writing in Obsidian publishes itself.
-
-`Cmd-P → Git: Commit and push` if you don't want to wait.
-
-Per-machine Obsidian state (`workspace.json`, caches, plugin data) is gitignored;
-the vault config itself is committed so the setup travels with the repo.
+Refunds are not subtracted from the meter.

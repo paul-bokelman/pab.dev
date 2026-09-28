@@ -1,0 +1,14 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "pab-web",
+  "compatibility_date": "2026-09-01",
+  // Until pab.dev's nameservers point at Cloudflare: serve on workers.dev. After the move,
+  // set workers_dev to false and uncomment the routes (same in apps/pot).
+  "workers_dev": true,
+  // "routes": [
+  //   { "pattern": "pab.dev", "custom_domain": true },
+  //   { "pattern": "www.pab.dev", "custom_domain": true }
+  // ],
+  "assets": { "directory": "./public" },
+  "dev": { "port": 8787, "inspector_port": 9230 }
+}

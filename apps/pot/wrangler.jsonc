@@ -1,0 +1,14 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "pab-pot",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-09-01",
+  // See apps/web/wrangler.jsonc: workers.dev until pab.dev moves to Cloudflare.
+  "workers_dev": true,
+  // "routes": [{ "pattern": "pot.pab.dev", "custom_domain": true }],
+  // The wordmark fonts and CSS, shared with apps/web through a symlink.
+  "assets": { "directory": "./public" },
+  "observability": { "enabled": true },
+  "vars": { "DEV_TOOLS": "" },
+  "dev": { "port": 8788, "inspector_port": 9231 }
+}
